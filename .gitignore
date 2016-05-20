@@ -20,6 +20,14 @@
 *.so.*
 *.dylib
 
+# Visual studio local files
+*.sdf
+*.suo
+*.user
+ipch
+Debug
+Release
+
 # Executables
 *.exe
 *.out
