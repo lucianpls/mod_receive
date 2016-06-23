@@ -10,9 +10,6 @@
 
 #include "mod_receive.h"
 
-// 1MB
-#define START_BUF_SZ 1024*1024
-
 static apr_status_t filter_func(ap_filter_t* f, apr_bucket_brigade* bb)
 {
     request_rec *r = f->r;

@@ -17,6 +17,9 @@
 APLOG_USE_MODULE(receive);
 #endif
 
+// 1MB
+#define START_BUF_SZ 1024*1024
+
 // the only exported symbol
 extern module AP_MODULE_DECLARE_DATA retile_module;
 
