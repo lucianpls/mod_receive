@@ -7,6 +7,7 @@
 #include <httpd.h>
 #include <http_config.h>
 #include <http_request.h>
+#include <apr_strings.h>
 #include "receive_context.h"
 
 #if defined(WIN32)
@@ -19,8 +20,5 @@ APLOG_USE_MODULE(receive);
 
 // 1MB
 #define START_BUF_SZ 1024*1024
-
-// the only exported symbol
-extern module AP_MODULE_DECLARE_DATA retile_module;
 
 #endif

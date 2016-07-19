@@ -1,7 +1,7 @@
 /*
  * Filter that receives the response and returns, to be used from sub-requests
  * Lucian Plesea
- * (C) 2015
+ * (C) 2015-2016
  */
 
 //
@@ -16,7 +16,7 @@ static apr_status_t filter_func(ap_filter_t* f, apr_bucket_brigade* bb)
     receive_ctx *context = (receive_ctx *)f->ctx;
 
     if (NULL == context) { // Allocate context if it doesn't exist already
-	context = (receive_ctx *) apr_palloc(f->r->pool, sizeof(receive_ctx));
+	context = (receive_ctx *) apr_palloc(r->pool, sizeof(receive_ctx));
 	context->maxsize = START_BUF_SZ;
 	context->buffer = (char *)apr_palloc(r->pool, context->maxsize);
 	context->size = 0;
@@ -51,12 +51,9 @@ static apr_status_t filter_func(ap_filter_t* f, apr_bucket_brigade* bb)
         }
     }
 
-    if (NULL == f->ctx) { // If the context was allocated by us
-        // use a note to pass back the location
-        char note_buff[128];
-        sprintf(note_buff, "%08llx %08x %08x", context->buffer, context->size, context->overflow);
-        apr_table_set(r->notes, "Receive", note_buff);
-    }
+    // If the context was new use a note to pass back the location
+    if (NULL == f->ctx) 
+        apr_table_setn(r->notes, "Receive_context", (const char *)context);
 
     return APR_SUCCESS;
 }
