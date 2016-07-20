@@ -4,7 +4,9 @@ C_SRC = mod_receive.cpp
 
 FILES = $(C_SRC) receive_context.h
 
-# Should define INCLUDES and MOD_PATH
+# Create a file Makefile.lcl. It should define INCLUDES and MOD_PATH
+# For example on how to create Makefile.lcl see Makefile.example.lcl
+
 include Makefile.lcl
 
 default	: $(TARGET)
