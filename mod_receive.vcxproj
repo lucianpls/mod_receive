@@ -70,6 +70,13 @@
       <LinkTimeCodeGeneration>Default</LinkTimeCodeGeneration>
       <AdditionalOptions>/EXPORT:receive_module,@1</AdditionalOptions>
     </Link>
+    <PostBuildEvent>
+      <Command>copy /Y $(OutDir)$(TargetName)$(TargetExt) \Apache24\modules
+copy /Y $(ProjectDir)src\receive_context.h \Apache24\include</Command>
+    </PostBuildEvent>
+    <PostBuildEvent>
+      <Message>Install to apache folders</Message>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
