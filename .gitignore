@@ -27,6 +27,7 @@
 ipch
 Debug
 Release
+.vs
 
 # Executables
 *.exe
