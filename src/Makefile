@@ -1,8 +1,10 @@
-TARGET=.libs/mod_receive.so
+MODULE = mod_receive
+TARGET = .libs/$(MODULE).so
 
-C_SRC = mod_receive.cpp
+C_SRC = $(MODULE).cpp
+HEADER = receive_context.h
 
-FILES = $(C_SRC) receive_context.h
+FILES = $(C_SRC) $(HEADER)
 
 # Create a file Makefile.lcl. It should define INCLUDES and MOD_PATH
 # For example on how to create Makefile.lcl see Makefile.example.lcl
@@ -20,7 +22,6 @@ install	:	$(TARGET)
 	$(SUDO)	cp $(TARGET)	$(DEST)
 	$(SUDO)	cp receive_context.h	$(HTTPD_INCLUDES_PATH)
 
-
 clean	:
-	rm -rf .libs *.{o,lo,slo,la}
+	rm -rf .libs *.o *.lo *.slo *.la
 
