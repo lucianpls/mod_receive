@@ -14,6 +14,7 @@ static apr_status_t filter_func(ap_filter_t* f, apr_bucket_brigade* bb)
 {
     request_rec *r = f->r;
     receive_ctx *context = (receive_ctx *)f->ctx;
+    LOG(f->r, "Receive context at %pm, size %d", context->buffer, context->size);
 
     if (NULL == context) { // Allocate context if it doesn't exist already
 	context = (receive_ctx *) apr_palloc(r->pool, sizeof(receive_ctx));
