@@ -42,13 +42,13 @@ static apr_status_t filter_func(ap_filter_t* f, apr_bucket_brigade* bb)
 
 	// Adjust the byte count to the available space
         if (context->maxsize - context->size < (int)bytes) {
-            context->overflow += bytes - (context->maxsize - context->size);
-            bytes = context->maxsize - context->size;
+            context->overflow += static_cast<int>(bytes - context->maxsize + context->size);
+            bytes = static_cast<apr_size_t>(context->maxsize) - context->size;
         }
 
         if (0 != bytes) {
             memcpy(context->buffer + context->size, buf, bytes);
-            context->size += bytes;
+            context->size += static_cast<int>(bytes);
         }
     }
 
