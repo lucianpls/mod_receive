@@ -20,12 +20,9 @@ $(TARGET)	:	$(FILES)
 	$(LIBTOOL) --silent --mode=compile g++ -prefer-pic -O2 -Wall $(DEFINES) -pthread $(EXTRA_INCLUDES) -c -o mod_receive.lo $(C_SRC) && touch mod_receive.slo
 	$(LIBTOOL) --silent --mode=link g++ -o mod_receive.la -rpath $(DEST) -module -avoid-version mod_receive.lo
 
-install	:	$(TARGET)
-	$(SUDO)	cp $(TARGET) $(DEST)
-	$(SUDO)	cp receive_context.h $(includedir)
+install	:	$(TARGET) $(HEADER)
+	$(SUDO)	$(CP) $< $(DEST)
+	$(SUDO)	$(CP) $(HEADER) $(includedir)
 
 clean	:
-	rm -rf .libs *.o *.lo *.slo *.la
-
-ech	:
-	echo $(date)
+	$(RM) -rf .libs *.o *.lo *.slo *.la
