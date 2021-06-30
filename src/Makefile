@@ -10,8 +10,8 @@ DEFINES = $(DEBUG) -DLINUX -D_REENTRANT -D_GNU_SOURCE
 
 # Create a file Makefile.lcl. It should define EXTRA_INCLUDES and MOD_PATH
 # For example on how to create Makefile.lcl see Makefile.example.lcl
-
-include Makefile.lcl
+MAKEOPT ?= Makefile.lcl
+include $(MAKEOPT)
 
 default	: $(TARGET)
 
@@ -22,7 +22,7 @@ $(TARGET)	:	$(FILES)
 
 install	:	$(TARGET) $(HEADER)
 	$(SUDO)	$(CP) $< $(DEST)
-	$(SUDO)	$(CP) $(HEADER) $(includedir)
+	$(SUDO)	$(CP) $(HEADER) $(EXP_INCLUDEDIR)
 
 clean	:
 	$(RM) -rf .libs *.o *.lo *.slo *.la

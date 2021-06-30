@@ -29,6 +29,8 @@
     <None Include=".gitignore" />
     <None Include="LICENSE" />
     <None Include="README.md" />
+    <None Include="src\Makefile" />
+    <None Include="src\Makefile.lcl.example" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{C2583ABC-D1AF-4E40-BB4F-BAC09758FE75}</ProjectGuid>

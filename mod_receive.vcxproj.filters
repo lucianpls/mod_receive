@@ -36,5 +36,11 @@
     <None Include="README.md">
       <Filter>Support Files</Filter>
     </None>
+    <None Include="src\Makefile">
+      <Filter>Support Files</Filter>
+    </None>
+    <None Include="src\Makefile.lcl.example">
+      <Filter>Support Files</Filter>
+    </None>
   </ItemGroup>
 </Project>
