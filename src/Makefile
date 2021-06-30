@@ -18,7 +18,7 @@ default	: $(TARGET)
 # Make it do c++
 $(TARGET)	:	$(FILES)
 	$(LIBTOOL) --silent --mode=compile g++ -prefer-pic -O2 -Wall $(DEFINES) -pthread $(EXTRA_INCLUDES) -c -o mod_receive.lo $(C_SRC) && touch mod_receive.slo
-	$(LIBTOOL) --silent --mode=link g++ -o mod_receive.la -rpath $(DEST) -module -avoid-version mod_receive.lo
+	$(LIBTOOL) --silent --mode=link g++ -o mod_receive.la -rpath $(LIBEXECDIR) -module -avoid-version mod_receive.lo
 
 install	:	$(TARGET) $(HEADER)
 	$(SUDO)	$(CP) $< $(DEST)
