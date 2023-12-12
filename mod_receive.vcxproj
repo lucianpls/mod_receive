@@ -87,6 +87,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>\HTTPD\include;\HTTPD\include\apr-2;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <LibraryPath>\HTTPD\lib;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
     <TargetExt>.so</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -128,20 +130,22 @@ copy /Y $(ProjectDir)src\receive_context.h \Apache24\include</Command>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;MOD_RECEIVE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>\Apache24\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>
+      </AdditionalIncludeDirectories>
       <EnableEnhancedInstructionSet>AdvancedVectorExtensions2</EnableEnhancedInstructionSet>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>\Apache24\lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
       <AdditionalDependencies>libhttpd.lib;libapr-2.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <LinkTimeCodeGeneration>Default</LinkTimeCodeGeneration>
       <AdditionalOptions>/EXPORT:receive_module,@1</AdditionalOptions>
     </Link>
     <PostBuildEvent>
-      <Command>copy /Y $(OutDir)$(TargetName)$(TargetExt) \Apache24\modules
-copy /Y $(ProjectDir)src\receive_context.h \Apache24\include</Command>
+      <Command>copy /Y $(TargetPath) \HTTPD\modules
+copy /Y $(ProjectDir)src\receive_context.h \HTTPD\include</Command>
     </PostBuildEvent>
     <PostBuildEvent>
       <Message>Install to apache folders</Message>
