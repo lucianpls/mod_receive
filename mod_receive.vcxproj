@@ -112,6 +112,7 @@ copy /Y $(ProjectDir)src\receive_context.h $(prefix)\include</Command>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalDependencies>libhttpd.lib;libapr-2.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions>/EXPORT:receive_module,@1</AdditionalOptions>
     </Link>
     <PostBuildEvent>
       <Command>copy /Y $(TargetPath) $(prefix)\modules
